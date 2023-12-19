@@ -2,13 +2,16 @@ import { Card } from "../../ui/dashboard/cards";
 import RevenueChart from "../../ui/dashboard/revenue-chart";
 import LatestInvoices from "../../ui/dashboard/latest-invoices";
 import { inter } from '@/app/ui/fonts'
-import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
+import { fetchLatestInvoices, fetchCardData } from '@/app/lib/data'; //remove fetchRevenue
+
+import { Suspense } from "react";
+import { RevenueChartSkeleton } from "@/app/ui/skeletons";
 
 export const dynamic = "force-dynamic";
 // 'auto' | 'force-dynamic' | 'error' | 'force-static'
 
 export default async function Page() {
-  const revenue = await fetchRevenue(); // wait for fetchRevenue() to finish
+  //const revenue = await fetchRevenue(); // wait for fetchRevenue() to finish
   const latestInvoices = await fetchLatestInvoices();
   const {
     numberOfInvoices,
@@ -30,7 +33,10 @@ export default async function Page() {
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue} />
+        {/* <RevenueChart revenue={revenue} /> */}
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
