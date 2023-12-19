@@ -4,6 +4,9 @@ import LatestInvoices from "../ui/dashboard/latest-invoices";
 import { inter } from '@/app/ui/fonts'
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
 
+export const dynamic = "force-dynamic";
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
 export default async function Page() {
   const revenue = await fetchRevenue(); // wait for fetchRevenue() to finish
   const latestInvoices = await fetchLatestInvoices();
@@ -27,10 +30,10 @@ export default async function Page() {
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue}  />
+        <RevenueChart revenue={revenue} />
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
-  ); 
+  );
   //<p>Dashboard Page</p>;
 }
