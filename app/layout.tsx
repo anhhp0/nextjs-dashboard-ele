@@ -14,8 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>{children}
+                <Analytics />
         <SpeedInsights />
-        <Analytics />
+
       </body>
       {/* <body className={`${lusitana.className} antialiased`}>{children}</body> */}
 
