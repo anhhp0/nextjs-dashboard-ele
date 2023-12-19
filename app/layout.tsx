@@ -1,4 +1,5 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 import '@/app/ui/global.css';
 //import './ui/global.css';
@@ -15,6 +16,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>{children}</body>
       {/* <body className={`${lusitana.className} antialiased`}>{children}</body> */}
       <SpeedInsights />
+      <Analytics />
     </html>
   );
 }
