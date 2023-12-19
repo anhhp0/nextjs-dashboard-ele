@@ -2,8 +2,10 @@ import { Card } from "../ui/dashboard/cards";
 import RevenueChart from "../ui/dashboard/revenue-chart";
 import LatestInvoices from "../ui/dashboard/latest-invoices";
 import { inter } from '@/app/ui/fonts'
+import { fetchRevenue } from "../lib/data";
 
 export default function Page() {
+  const revenue= await fetchRevenue();
   return (
     <main>
       <h1 className={`${inter.className} mb-4 text-xl md:text-2xl`}>Dashboard</h1>
