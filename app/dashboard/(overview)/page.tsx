@@ -1,6 +1,6 @@
-import { Card } from "../ui/dashboard/cards";
-import RevenueChart from "../ui/dashboard/revenue-chart";
-import LatestInvoices from "../ui/dashboard/latest-invoices";
+import { Card } from "../../ui/dashboard/cards";
+import RevenueChart from "../../ui/dashboard/revenue-chart";
+import LatestInvoices from "../../ui/dashboard/latest-invoices";
 import { inter } from '@/app/ui/fonts'
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
 
