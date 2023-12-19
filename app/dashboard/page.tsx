@@ -5,14 +5,14 @@ import { inter } from '@/app/ui/fonts'
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
 
 export default async function Page() {
-  const revenue = await fetchRevenue();
+  const revenue = await fetchRevenue(); // wait for fetchRevenue() to finish
   const latestInvoices = await fetchLatestInvoices();
   const {
     numberOfInvoices,
     numberOfCustomers,
     totalPendingInvoices,
     totalPaidInvoices,
-  } = await fetchCardData();
+  } = await fetchCardData(); // wait for fetchLatestInvoices() to finish
   return (
     <main>
       <h1 className={`${inter.className} mb-4 text-xl md:text-2xl`}>Dashboard</h1>
