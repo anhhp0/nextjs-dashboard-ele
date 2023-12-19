@@ -6,6 +6,10 @@ import styles from '@/app/ui/home.module.css';
 import { inter } from '@/app/ui/fonts';
 import Image from 'next/image';
 
+
+export const dynamic = "force-static";
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
 export default function Page() {
   return (
     <main className="flex min-h-screen flex-col p-6">
@@ -57,3 +61,4 @@ export default function Page() {
     </main>
   );
 }
+
