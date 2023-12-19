@@ -31,5 +31,6 @@ export default async function Page() {
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
-  ); //<p>Dashboard Page</p>;
+  ); 
+  //<p>Dashboard Page</p>;
 }
