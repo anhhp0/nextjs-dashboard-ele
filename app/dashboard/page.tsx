@@ -2,10 +2,11 @@ import { Card } from "../ui/dashboard/cards";
 import RevenueChart from "../ui/dashboard/revenue-chart";
 import LatestInvoices from "../ui/dashboard/latest-invoices";
 import { inter } from '@/app/ui/fonts'
-import { fetchRevenue } from '@/app/lib/data';
+import { fetchRevenue, fetchLatestInvoices } from '@/app/lib/data';
 
 export default async function Page() {
   const revenue = await fetchRevenue();
+  const latestInvoices = await fetchLatestInvoices();
   return (
     <main>
       <h1 className={`${inter.className} mb-4 text-xl md:text-2xl`}>Dashboard</h1>
@@ -21,7 +22,7 @@ export default async function Page() {
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue}  />
-        {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
+        <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
   ); //<p>Dashboard Page</p>;
