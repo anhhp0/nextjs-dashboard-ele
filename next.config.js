@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {ppr: true};
+const nextConfig = {};
 
 module.exports = nextConfig;
 
