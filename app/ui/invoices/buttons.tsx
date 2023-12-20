@@ -27,7 +27,7 @@ export function UpdateInvoice({ id }: { id: string }) {
 export function DeleteInvoice({ id }: { id: string }) {
   return (
     <>
-      <button className="rounded-md border p-2 hover:bg-gray-100">
+      <button className="rounded-md border p-2 hover:bg-gray-100 hover:bg-red-600">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>
