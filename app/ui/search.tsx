@@ -11,7 +11,7 @@ export default function Search(
   const { replace } = useRouter();
   
   function handleSearch(term: string) {
-    console.log(term);
+    console.log(`Searching... ${term}`);
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set('query', term);
