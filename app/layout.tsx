@@ -4,7 +4,17 @@ import { Analytics } from '@vercel/analytics/react';
 import '@/app/ui/global.css';
 //import './ui/global.css';
 import { inter } from '@/app/ui/fonts';
+import { Metadata } from 'next';
 // import { lusitana } from './ui/fonts';
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | BHSoft Dashboard',
+    default: 'BHSoft Dashboard',
+  },
+  description: 'BHSoft',
+  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+};
 
 export default function RootLayout({
   children,
