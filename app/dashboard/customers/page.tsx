@@ -4,7 +4,7 @@ import Table from '@/app/ui/customers/table';
 // import { CreateInvoice } from '@/app/ui/invoices/buttons';
 // import { inter } from '@/app/ui/fonts';
 import { Suspense } from 'react';
-import { fetchFilteredCustomers } from '@/app/lib/data';
+import { fetchCustomersPages } from '@/app/lib/data';
 // import { generatePagination } from '@/app/lib/utils';
 
 export default async function Page({
@@ -17,7 +17,7 @@ export default async function Page({
 }) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 5;
-  const totalPages = await fetchFilteredCustomers(query);
+  const totalPages = await fetchCustomersPages(query);
 
   // const page = searchParams['page'] ?? '1';
   // const per_page = searchParams['per_page'] ?? '5';
@@ -28,7 +28,7 @@ export default async function Page({
         <Table query={query} currentPage={currentPage} customers={[]} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );
