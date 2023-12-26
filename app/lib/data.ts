@@ -9,7 +9,7 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
-import { unstable_noStore as noStore} from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -195,7 +195,11 @@ export async function fetchCustomers() {
   }
 }
 
-export async function fetchFilteredCustomers(query: string) {
+export async function fetchFilteredCustomers(query: string,
+  // currentPage: number,
+) {
+  // const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  noStore();
   try {
     const data = await sql<CustomersTableType>`
 		SELECT
@@ -243,25 +247,18 @@ export async function getUser(email: string) {
 export async function fetchCustomersPages(query: string) {
   noStore();
   try {
-    const data = await sql<CustomersTableType>`
-		SELECT
-		  customers.id,
-		  customers.name,
-		  customers.email,
-		  customers.image_url,
-		  COUNT(invoices.id) AS total_invoices,
-		  SUM(CASE WHEN invoices.status = 'pending' THEN invoices.amount ELSE 0 END) AS total_pending,
-		  SUM(CASE WHEN invoices.status = 'paid' THEN invoices.amount ELSE 0 END) AS total_paid
+    const count = await sql
+    `SELECT COUNT(customers.id)
 		FROM customers
-		LEFT JOIN invoices ON customers.id = invoices.customer_id
-		WHERE
+    		WHERE
 		  customers.name ILIKE ${`%${query}%`} OR
         customers.email ILIKE ${`%${query}%`}
 		GROUP BY customers.id, customers.name, customers.email, customers.image_url
+		ORDER BY customers.name ASC
 
   `;
 
-    const totalPages = Math.ceil(Number(data.rows[0].conut) / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(Number(count.rows[0].conut) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
     console.error('Database Error:', error);
