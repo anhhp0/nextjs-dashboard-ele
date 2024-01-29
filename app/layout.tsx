@@ -9,10 +9,10 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | BHSoft Dashboard',
-    default: 'BHSoft Dashboard',
+    template: '%s | Acme Dashboard',
+    default: 'Acme Dashboard',
   },
-  description: 'BHSoft',
+  description: 'Acme',
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
 };
 
@@ -23,13 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}
-                <Analytics />
+      <body className={`${inter.className} antialiased`}>
+        {children}
+        <Analytics />
         <SpeedInsights />
-
       </body>
       {/* <body className={`${lusitana.className} antialiased`}>{children}</body> */}
-
     </html>
   );
 }
